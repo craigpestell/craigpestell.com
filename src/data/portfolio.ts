@@ -6,6 +6,7 @@ export interface PersonalInfo {
   location: string;
   website: string;
   linkedin: string;
+  github: string;
   profileImage?: string;
   summary: string;
   availability: string;
@@ -73,15 +74,16 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   personalInfo: {
     name: "Craig Pestell",
-    title: "Staff Software Engineer",
+    title: "Senior Full Stack Engineer",
     email: "craigpestell@gmail.com",
     phone: "+1 (415) 513-7188",
     location: "Vancouver, BC, Canada",
     website: "https://craigpestell.com",
     linkedin: "https://linkedin.com/in/craigpestell",
+    github: "https://github.com/craigpestell",
     profileImage: "/images/icons8-eggman-robotnik-480.png",
-    summary: "Staff engineer who ships production-grade internal tools end to end, from Kubernetes deploys to polished React UIs, and whose tools get adopted voluntarily with no top-down rollout. At Apple, I was the sole frontend architect of a data-pipeline platform that 60+ hardware engineers and factory-floor operators now depend on. Earlier: Google, Williams Sonoma, and Macy's.",
-    availability: "Available now for staff/principal IC roles (FTE) or contract engagements (C2C). Based in Vancouver; open to relocating for the right role."
+    summary: "Senior full-stack engineer who ships production-grade internal tools end to end, from Kubernetes deploys to polished React UIs, and whose tools get adopted voluntarily with no top-down rollout. At Apple, I was the sole frontend architect of a data-pipeline platform that 60+ hardware engineers and factory-floor operators now depend on. Earlier: Google, Williams Sonoma, and Macy's.",
+    availability: "Available now for staff/principal IC roles (FTE), contract engagements or consulting. Based in Vancouver; open to relocating to California for the right role."
   },
   resume: {
     locationNote: "open to US relocation (TN eligible)",
@@ -140,6 +142,24 @@ export const portfolioData: PortfolioData = {
       imageUrl: "/images/portfolio-1.jpg",
       startDate: "2024-09",
       endDate: "2026-09",
+      featured: true
+    },
+    {
+      id: "project-varconv",
+      title: "Variation Converter for WooCommerce",
+      description: "Open-source WordPress plugin that merges near-duplicate simple products into variable products, with preview and one-click undo",
+      longDescription: "Many WooCommerce stores list one simple product per color or size. Variation Converter scans the catalog, groups the products that are really variants of one product by SKU family and shared name, and turns each group the owner approves into a single variable product. It also splits a variable product back into simple products. The originals are hidden, never deleted, and every change can be undone from the History tab.",
+      highlights: [
+        "Groups candidates automatically by SKU family and shared name prefix, and flags price, category or label mismatches for review",
+        "Carries over each variant's SKU, prices, sale dates, stock, weight, dimensions and image",
+        "All-or-nothing saves: a failed conversion removes its partial product and leaves the catalog untouched",
+        "Published on wordpress.org"
+      ],
+      technologies: ["PHP", "WordPress", "WooCommerce", "JavaScript", "WP-CLI"],
+      imageUrl: "/images/variation-converter.webp",
+      projectUrl: "https://wordpress.org/plugins/variation-converter-for-woocommerce/",
+      githubUrl: "https://github.com/craigpestell/variation-converter",
+      startDate: "2026-10",
       featured: true
     },
     {

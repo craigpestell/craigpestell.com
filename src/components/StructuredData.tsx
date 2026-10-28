@@ -21,6 +21,7 @@ export default function StructuredData({ personalInfo }: StructuredDataProps) {
     },
     "sameAs": [
       personalInfo.linkedin,
+      personalInfo.github,
       personalInfo.website
     ],
     "knowsAbout": [

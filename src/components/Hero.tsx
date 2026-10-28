@@ -1,4 +1,4 @@
-import { Linkedin, Mail, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import Image from 'next/image';
 import { PersonalInfo } from '@/data/portfolio';
 
@@ -38,7 +38,7 @@ export default function Hero({ personalInfo }: HeroProps) {
               {personalInfo.name}
             </h1>
             <h2 className="text-2xl md:text-3xl text-muted-foreground font-light">
-              Staff engineer building tools users adopt by default
+              Senior full-stack engineer building tools users adopt by default
             </h2>
           </div>
 
@@ -77,6 +77,15 @@ export default function Hero({ personalInfo }: HeroProps) {
               aria-label={`Connect with ${personalInfo.name} on LinkedIn`}
             >
               <Linkedin className="w-6 h-6 text-card-foreground" />
+            </a>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 bg-card rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+              aria-label={`See ${personalInfo.name}'s code on GitHub`}
+            >
+              <Github className="w-6 h-6 text-card-foreground" />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
