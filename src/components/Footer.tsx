@@ -68,6 +68,14 @@ export default function Footer({ personalInfo }: FooterProps) {
               >
                 LinkedIn
               </a>
+              <a
+                href={personalInfo.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit text-primary underline-offset-4 hover:text-primary/80 hover:underline focus-visible:underline focus-visible:outline-none"
+              >
+                GitHub
+              </a>
             </div>
           </div>
         </div>
