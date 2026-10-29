@@ -43,7 +43,7 @@ A modern, responsive portfolio website for Craig Pestell, Senior Software Engine
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/craigpestell/resume-2025.git
+   git clone https://github.com/craigpestell/craigpestell.com.git
    cd craigpestell.com
    ```
 
