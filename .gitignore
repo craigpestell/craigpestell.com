@@ -50,3 +50,4 @@ storybook-static
 
 # local credentials
 *.creds
+bundle-analyzer-report.html
