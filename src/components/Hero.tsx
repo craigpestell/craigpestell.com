@@ -20,10 +20,12 @@ function MeasureRows({ measure }: { measure: Measure }) {
 
   return (
     <div>
-      <h3 className="text-base font-semibold">
+      {/* Not a heading: the readout sits directly under the h1, so an h3 here
+          would skip a level. */}
+      <p className="text-base font-semibold">
         {measure.label}
         <span className="block text-sm font-normal text-panel-muted">{measure.context}</span>
-      </h3>
+      </p>
       <div className="mt-3 grid grid-cols-[52px_1fr] items-center gap-x-3 gap-y-1">
         <Bar label="Before" percent={(measure.before.amount / max) * 100} />
         <span className={value}>{measure.before.value}</span>

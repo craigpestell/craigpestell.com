@@ -51,6 +51,13 @@ export interface Experience {
     summary: string;
     points: string[];
   };
+  // Resume presentation. `summary` and `points` replace `description` and
+  // the first three `achievements`; `compact` renders the role as one line.
+  resume?: {
+    summary?: string;
+    points?: string[];
+    compact?: boolean;
+  };
 }
 
 // A measured before/after result drawn as a pair of bars in the hero.
@@ -80,9 +87,10 @@ export interface SiteCopy {
 }
 
 export interface ResumeProfile {
+  headline: string;
+  availability: string;
   locationNote: string;
   earlierCareerSummary: string;
-  earlierCareerHighlights: string[];
 }
 
 export interface Education {
@@ -152,12 +160,10 @@ export const portfolioData: PortfolioData = {
     workingHours: "Working Pacific hours, open to remote."
   },
   resume: {
+    headline: "Senior Full Stack Engineer, internal tools and platforms",
+    availability: "Available now for staff/principal IC roles, contract engagements or consulting.",
     locationNote: "open to US relocation (TN eligible)",
-    earlierCareerSummary: "Earlier career included concurrent consulting and contract engagements across database applications, PHP web systems, public-sector software, e-commerce, CMS platforms, web services, and Linux administration.",
-    earlierCareerHighlights: [
-      "Built a call-center application and geographic branch locator for Canada Reconnect before online mapping services were commonplace, using Canadian postal-code coordinates and spherical distance calculations to rank nearby payment locations.",
-      "As the sole developer, built a PHP education administration and student information system for the Durham District School Board, including FileMaker Pro-style ad hoc search across any field and complex query construction."
-    ]
+    earlierCareerSummary: "Consulting and contract engagements from 1998 across database applications, PHP web systems, public-sector software, e-commerce, CMS platforms, web services, and Linux administration."
   },
   skills: [
     { name: "React", level: 9, category: "frontend" },
@@ -360,6 +366,15 @@ export const portfolioData: PortfolioData = {
           "Cut pipeline setup from up to an hour to about 30 seconds for simple cases, with guided parameter selection that surfaces only valid options from thousands of values.",
           "Built a Storybook-driven documentation pipeline that keeps end-user documentation aligned with the shipped UI."
         ]
+      },
+      resume: {
+        points: [
+          "Reached 60+ users across Cupertino hardware engineering and factory-floor operations with no top-down rollout, by replacing deep folder navigation and ad-hoc parsing scripts with a guided retrieval workflow over datasets typically 1-4 TB and peaking near 20 TB",
+          "Cut pipeline setup from up to an hour to about 30 seconds with guided parameter selection that surfaces only valid options from thousands of values",
+          "Enabled hardware engineers to run their own Python post-processing code against pipeline files, provided by .zip upload or cloned from their own repositories, with read access granted through a purpose-built GitHub App",
+          "Architected the Next.js / React 19 / TypeScript frontend from a blank repository, wired OIDC end to end with per-request identity propagation, and shipped through Kubernetes and internal CI/CD",
+          "Built the unit test suite from scratch to ~80% coverage and added an OpenAPI-to-TypeScript CI drift gate so frontend and API contracts cannot silently diverge"
+        ]
       }
     },
     {
@@ -386,6 +401,14 @@ export const portfolioData: PortfolioData = {
           "Built the web dashboard for subscription management and a Chrome extension for website integration.",
           "Set up Auth0 OAuth with granular roles and permissions across the platform."
         ]
+      },
+      resume: {
+        summary: "Led product and platform work for a VC-backed startup whose LLM-powered product read patient medical records and scored its confidence in each answer.",
+        points: [
+          "Set up much of the Azure cloud infrastructure and the deployment pipelines",
+          "Built the product with strict PII handling: patient identifiers were scrubbed from all model data shown to users",
+          "Architected and delivered the React subscription management dashboard from concept to production, with Auth0 OAuth and granular roles and permissions"
+        ]
       }
     },
     {
@@ -409,6 +432,14 @@ export const portfolioData: PortfolioData = {
           "Proof-of-concepts and wireframes guided the architecture of a platform for collaboration across 20+ hardware engineering teams.",
           "Took the prototypes to a production application on Angular and Google's internal toolchain."
         ]
+      },
+      resume: {
+        summary: "Designed and prototyped a version control system for silicon chip design specifications, built for collaboration across 20+ hardware engineering teams.",
+        points: [
+          "Proof-of-concepts and wireframes guided the architecture of the platform",
+          "Took the prototypes to a production application on Angular, RxJS and Google's internal toolchain",
+          "Reviewed code across the frontend development team"
+        ]
       }
     },
     {
@@ -431,6 +462,14 @@ export const portfolioData: PortfolioData = {
         points: [
           "Led the move from a monolithic e-commerce platform to a micro-frontend ecosystem.",
           "Made orientation, initial state and interaction patterns configurable while preserving accessibility and performance standards."
+        ]
+      },
+      resume: {
+        summary: "Led the move from a legacy monolithic e-commerce platform to a micro-frontend ecosystem.",
+        points: [
+          "Architected a context-agnostic component library for Pottery Barn, West Elm, and Mark and Graham; components adapt to each brand's design language through CSS variables while behaving the same everywhere",
+          "Built the micro-frontend component build system with a structured CI/CD pipeline",
+          "Made component orientation, initial state and interaction patterns configurable while preserving accessibility and performance standards"
         ]
       }
     },
@@ -460,6 +499,14 @@ export const portfolioData: PortfolioData = {
           "Built the tooling that drove voluntary adoption across about 8 teams.",
           "Led the performance work that cut product discovery page load from 27 seconds to 7."
         ]
+      },
+      resume: {
+        summary: "One of two engineers who designed and built the Macys.com micro-frontend architecture, replacing a monolithic frontend so teams could build components in their framework of choice and release on their own schedules.",
+        points: [
+          "Built a component harness for developing components in isolation without running the full site, driving voluntary adoption of the architecture across ~8 teams",
+          "Cut catalog page load from 27s to 7s by removing unused third-party scripts, deferring non-critical scripts, and prioritizing above-the-fold content",
+          "Built a Segment-style analytics layer and in-house event store that consolidated multiple third-party analytics tools"
+        ]
       }
     },
     {
@@ -474,7 +521,11 @@ export const portfolioData: PortfolioData = {
         "Collaborated within Agile development team to deliver high-quality user interface components",
         "Implemented responsive web design using modern frontend technologies and frameworks"
       ],
-      technologies: ["jQuery", "Backbone.js", "Require.js", "Bootstrap", "Node.js", "HTML5", "CSS3", "Jasmine", "Gulp", "Grunt", "LESS"]
+      technologies: ["jQuery", "Backbone.js", "Require.js", "Bootstrap", "Node.js", "HTML5", "CSS3", "Jasmine", "Gulp", "Grunt", "LESS"],
+      resume: {
+        compact: true,
+        summary: "Customer subscription portal features supporting Autodesk's move to software as a service."
+      }
     },
     {
       id: "exp-9",
@@ -490,7 +541,11 @@ export const portfolioData: PortfolioData = {
         "Collaborated with cross-domain users to collect requirements and implement new ticket types",
         "Leveraged Google's internal technologies to achieve enterprise-scale performance optimization"
       ],
-      technologies: ["Python", "JavaScript", "Google Closures", "Fava Framework", "Oracle DB", "BMC Remedy"]
+      technologies: ["Python", "JavaScript", "Google Closure", "Fava Framework", "Oracle DB", "BMC Remedy"],
+      resume: {
+        compact: true,
+        summary: "Developed and maintained an internal ticketing system serving over 10,000 requests per second across 10+ million records at 99.9% uptime; converted 100+ ticket forms to a refactored framework and built the mobile frontend."
+      }
     },
     {
       id: "exp-18",
@@ -655,8 +710,8 @@ export const portfolioData: PortfolioData = {
     {
       id: "edu-2",
       institution: "British Columbia Institute of Technology",
-      degree: "Programming Concepts and Methodologies",
-      field: "Programming coursework",
+      degree: "Programming Concepts and Methodologies (coursework)",
+      field: "",
       startDate: "1999-01",
       endDate: "1999-12",
       achievements: [
