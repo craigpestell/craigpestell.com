@@ -1,109 +1,78 @@
-import { Github, Linkedin, Mail, FileText } from 'lucide-react';
-import Image from 'next/image';
-import { PersonalInfo } from '@/data/portfolio';
+import type { Measure, PersonalInfo, SiteCopy } from '@/data/portfolio';
 
-interface HeroProps {
-  personalInfo: PersonalInfo;
+function Bar({ label, percent, after = false }: { label: string; percent: number; after?: boolean }) {
+  return (
+    <>
+      <span className="text-sm text-panel-muted">{label}</span>
+      <span className="block h-[18px]" aria-hidden="true">
+        <span
+          className={`bar-fill block h-full min-w-1 rounded-[3px] ${after ? 'bar-fill-after bg-primary' : 'bg-panel-track'}`}
+          style={{ width: `${percent}%` }}
+        />
+      </span>
+    </>
+  );
 }
 
-export default function Hero({ personalInfo }: HeroProps) {
+function MeasureRows({ measure }: { measure: Measure }) {
+  const max = Math.max(measure.before.amount, measure.after.amount);
+  const value = 'col-start-2 font-display text-[22px] font-bold leading-tight tabular-nums';
+
   return (
-    <section id="about" aria-label="About" className="min-h-screen flex items-center justify-center bg-gradient-to-b from-primary/10 via-accent/5 to-background pt-28 md:pt-36 pb-20">
-      <div className="container mx-auto px-4 lg:px-8 xl:px-12">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Profile Image */}
-          <div className="mb-8">
-            <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-r from-primary to-accent p-1">
-              {personalInfo.profileImage ? (
-                <Image 
-                  src={personalInfo.profileImage} 
-                  alt={`${personalInfo.name} - illustrated avatar`}
-                  width={192}
-                  height={192}
-                  sizes="192px"
-                  className="w-full h-full rounded-full object-cover"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full rounded-full bg-muted flex items-center justify-center text-4xl font-bold text-muted-foreground">
-                  {personalInfo.name.split(' ').map(n => n[0]).join('')}
-                </div>
-              )}
-            </div>
-          </div>
+    <div>
+      <h3 className="text-base font-semibold">
+        {measure.label}
+        <span className="block text-sm font-normal text-panel-muted">{measure.context}</span>
+      </h3>
+      <div className="mt-3 grid grid-cols-[52px_1fr] items-center gap-x-3 gap-y-1">
+        <Bar label="Before" percent={(measure.before.amount / max) * 100} />
+        <span className={value}>{measure.before.value}</span>
+        <span className="col-span-2 h-1" />
+        <Bar label="After" percent={(measure.after.amount / max) * 100} after />
+        <span className={value}>
+          {measure.after.value}
+          {measure.after.note && (
+            <small className="ml-2 font-sans text-sm font-normal text-panel-muted">
+              {measure.after.note}
+            </small>
+          )}
+        </span>
+      </div>
+    </div>
+  );
+}
 
-          {/* Name and Title */}
-          <div className="mb-6">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {personalInfo.name}
-            </h1>
-            <h2 className="text-2xl md:text-3xl text-muted-foreground font-light">
-              Senior full-stack engineer building tools users adopt by default
-            </h2>
-          </div>
-
-          {/* Summary */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-6 max-w-3xl mx-auto leading-relaxed">
-            {personalInfo.summary}
-          </p>
-
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-foreground shadow-sm">
-            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" aria-hidden="true" />
-            {personalInfo.availability}
-          </div>
-
-          <div className="mb-8 grid gap-4 text-left sm:grid-cols-3 max-w-4xl mx-auto">
-            <div className="rounded-lg border border-border bg-card/70 p-4">
-              <h3 className="font-semibold text-foreground">Architecture ownership</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Frontend, API, and platform decisions that hold together in production.</p>
-            </div>
-            <div className="rounded-lg border border-border bg-card/70 p-4">
-              <h3 className="font-semibold text-foreground">Ambiguous problems</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Turning operational pain into durable workflows.</p>
-            </div>
-            <div className="rounded-lg border border-border bg-card/70 p-4">
-              <h3 className="font-semibold text-foreground">Engineering leverage</h3>
-              <p className="mt-1 text-sm text-muted-foreground">Reusable systems, tooling, documentation, and guidance for teams.</p>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex justify-center space-x-6 mb-8">
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-card rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label={`Connect with ${personalInfo.name} on LinkedIn`}
-            >
-              <Linkedin className="w-6 h-6 text-card-foreground" />
-            </a>
-            <a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 bg-card rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label={`See ${personalInfo.name}'s code on GitHub`}
-            >
-              <Github className="w-6 h-6 text-card-foreground" />
-            </a>
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="p-3 bg-card rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label={`Send email to ${personalInfo.name}`}
-            >
-              <Mail className="w-6 h-6 text-card-foreground" />
-            </a>
-            <a
-              href="/api/resume"
-              className="p-3 bg-card rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-              aria-label={`Get ${personalInfo.name}'s resume`}
-            >
-              <FileText className="w-6 h-6 text-card-foreground" />
-            </a>
-          </div>
+export default function Hero({ personalInfo, site }: { personalInfo: PersonalInfo; site: SiteCopy }) {
+  return (
+    <section id="top" className="shell grid gap-9 py-10 pb-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-center md:gap-14 md:pt-[72px] md:pb-20">
+      <div className="flex flex-col items-start gap-5">
+        <h1 className="text-[17px] font-medium text-muted-foreground">
+          {personalInfo.name}, {personalInfo.title.toLowerCase()}
+        </h1>
+        <p className="text-balance font-display text-[clamp(2.3rem,5.2vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.025em]">
+          {site.headline}
+        </p>
+        <p className="max-w-[34em] text-[19px] leading-[1.55]">{site.lede}</p>
+        <p className="flex max-w-[34em] gap-2.5 text-[15.5px] text-muted-foreground">
+          <span className="mt-[0.5em] size-[9px] shrink-0 rounded-full bg-available" aria-hidden="true" />
+          {personalInfo.availability}
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a href="#contact" className="btn btn-primary">Get in touch</a>
+          <a href="#work" className="btn btn-quiet">See the work</a>
         </div>
       </div>
+
+      <figure className="flex flex-col gap-7 rounded-[10px] bg-secondary p-[22px] text-secondary-foreground md:p-7">
+        {site.measures.map((measure) => (
+          <MeasureRows key={measure.label} measure={measure} />
+        ))}
+        <p className="border-t border-panel-track pt-6 text-[15.5px]">
+          <b className="mr-2 font-display text-3xl font-extrabold text-primary">{site.adoption.figure}</b>
+          {site.adoption.text}
+        </p>
+        <figcaption className="text-sm text-panel-muted">{site.measuresNote}</figcaption>
+      </figure>
     </section>
   );
 }

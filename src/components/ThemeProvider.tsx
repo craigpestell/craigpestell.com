@@ -22,12 +22,10 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
-// The site has a single theme (Nord, applied statically via the <html
-// data-theme="nord"> attribute in layout.tsx) with light/dark variants
-// selected by the .dark class this provider toggles. It used to also drive
-// a font and letter-spacing picker; those had no remaining UI to change
-// them, so the font is now set statically via next/font in layout.tsx and
-// letter-spacing via a static Tailwind class.
+// The site has a single theme (Readout, applied statically via the <html
+// data-theme="readout"> attribute in layout.tsx) with light/dark variants
+// selected by the .dark class this provider toggles. Fonts are set
+// statically via next/font in layout.tsx.
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [isHydrated, setIsHydrated] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);

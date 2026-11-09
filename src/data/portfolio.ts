@@ -43,6 +43,40 @@ export interface Experience {
   achievements: string[];
   technologies: string[];
   resumeIncluded?: boolean;
+  // Home-page presentation for the roles shown in the Work section: a
+  // heading, a short summary and the outcomes worth leading with. Roles
+  // without it are listed under Earlier using `description`.
+  site?: {
+    heading: string;
+    summary: string;
+    points: string[];
+  };
+}
+
+// A measured before/after result drawn as a pair of bars in the hero.
+// `amount` values share a unit within one measure so the bars are to scale.
+export interface Measure {
+  label: string;
+  context: string;
+  before: { value: string; amount: number };
+  after: { value: string; note?: string; amount: number };
+}
+
+// Home-page copy that is not part of the resume dataset.
+export interface SiteCopy {
+  headline: string;
+  lede: string;
+  measures: Measure[];
+  adoption: { figure: string; text: string };
+  measuresNote: string;
+  workIntro: string;
+  productId: string;
+  productIntro: string;
+  earlierIntro: string;
+  stackIntro: string;
+  contactHeading: string;
+  contactBody: string;
+  workingHours: string;
 }
 
 export interface ResumeProfile {
@@ -64,6 +98,7 @@ export interface Education {
 
 export interface PortfolioData {
   personalInfo: PersonalInfo;
+  site: SiteCopy;
   resume: ResumeProfile;
   skills: Skill[];
   projects: Project[];
@@ -84,6 +119,37 @@ export const portfolioData: PortfolioData = {
     profileImage: "/images/icons8-eggman-robotnik-480.png",
     summary: "Senior full-stack engineer who ships production-grade internal tools end to end, from Kubernetes deploys to polished React UIs, and whose tools get adopted voluntarily with no top-down rollout. At Apple, I was the sole frontend architect of a data-pipeline platform that 60+ hardware engineers and factory-floor operators now depend on. Earlier: Google, Williams Sonoma, and Macy's.",
     availability: "Available now for staff/principal IC roles (FTE), contract engagements or consulting. Based in Vancouver; open to relocating to California for the right role."
+  },
+  site: {
+    headline: "I build internal tools that spread on their own.",
+    lede: "At Apple, I was the sole frontend architect of a data-pipeline platform that 60+ hardware engineers and factory-floor operators now depend on. Earlier: Google, Williams Sonoma, and Macy's.",
+    measures: [
+      {
+        label: "Pipeline setup time",
+        context: "Apple, hardware test data platform",
+        before: { value: "up to 1 hour", amount: 3600 },
+        after: { value: "about 30 seconds", note: "for simple cases", amount: 30 }
+      },
+      {
+        label: "Product discovery page load",
+        context: "Macys.com",
+        before: { value: "27 seconds", amount: 27 },
+        after: { value: "7 seconds", amount: 7 }
+      }
+    ],
+    adoption: {
+      figure: "60+",
+      text: "production users at Apple, reached with no top-down rollout."
+    },
+    measuresNote: "Bars are drawn to scale within each pair.",
+    workIntro: "Five roles since 2015, most recent first. Each one says what I owned and what changed because of it.",
+    productId: "project-varconv",
+    productIntro: "Something I designed, built and published on my own.",
+    earlierIntro: "Contract and consulting work going back to 1998.",
+    stackIntro: "What I work in, grouped by where it sits.",
+    contactHeading: "Building something people need to rely on?",
+    contactBody: "That's the work I do best. Send me the details.",
+    workingHours: "Working Pacific hours, open to remote."
   },
   resume: {
     locationNote: "open to US relocation (TN eligible)",
@@ -284,7 +350,17 @@ export const portfolioData: PortfolioData = {
         "Built the docs site from scratch (~55 docs) with a Storybook-driven pipeline that regenerates every screenshot from tagged component stories",
         "Built a customizable, widget-based admin dashboard graphing API performance (per-endpoint p50/p95), API usage by user, and pipeline data metrics, all filterable by date range and user"
       ],
-      technologies: ["TypeScript", "Next.js", "React", "Tailwind", "Storybook", "Playwright", "Python", "Flask", "OIDC", "S3", "Kubernetes"]
+      technologies: ["TypeScript", "Next.js", "React", "Tailwind", "Storybook", "Playwright", "Python", "Flask", "OIDC", "S3", "Kubernetes"],
+      site: {
+        heading: "Hardware test data platform",
+        summary: "Rejoined Apple by request. Sole frontend architect of an internal data-pipeline platform built from an empty repository, with ownership extending into the API gateway and the Kubernetes-scheduled sequencer service.",
+        points: [
+          "Reached 60+ users across Cupertino hardware engineering and factory-floor operations with no top-down rollout.",
+          "Replaced deep folder navigation and ad-hoc parsing scripts with a guided retrieval workflow over datasets typically 1 to 4 TB, peaking near 20 TB.",
+          "Cut pipeline setup from up to an hour to about 30 seconds for simple cases, with guided parameter selection that surfaces only valid options from thousands of values.",
+          "Built a Storybook-driven documentation pipeline that keeps end-user documentation aligned with the shipped UI."
+        ]
+      }
     },
     {
       id: "exp-3",
@@ -301,7 +377,16 @@ export const portfolioData: PortfolioData = {
         "Set up Auth0 OAuth with granular roles and permissions for the subscription dashboard and the wider platform",
         "Created comprehensive Tailwind component library enabling consistent brand experience across platforms"
       ],
-      technologies: ["TypeScript", "Next.js", "NestJS", "Python", "Azure", "Auth0"]
+      technologies: ["TypeScript", "Next.js", "NestJS", "Python", "Azure", "Auth0"],
+      site: {
+        heading: "LLM product for patient medical records",
+        summary: "Led product and platform work for a VC-backed startup whose LLM-powered product read patient medical records and scored its confidence in each answer.",
+        points: [
+          "Set up much of the Azure cloud infrastructure and the deployment pipelines.",
+          "Built the web dashboard for subscription management and a Chrome extension for website integration.",
+          "Set up Auth0 OAuth with granular roles and permissions across the platform."
+        ]
+      }
     },
     {
       id: "exp-4",
@@ -316,7 +401,15 @@ export const portfolioData: PortfolioData = {
         "Conducted thorough code reviews ensuring high-quality standards across frontend development team",
         "Provided technical leadership for architectural decisions in chip design collaboration platform"
       ],
-      technologies: ["Angular", "TypeScript", "Python", "RxJS"]
+      technologies: ["Angular", "TypeScript", "Python", "RxJS"],
+      site: {
+        heading: "Silicon design collaboration platform",
+        summary: "Designed and prototyped Fuse Manager, a version control system for silicon chip design specifications.",
+        points: [
+          "Proof-of-concepts and wireframes guided the architecture of a platform for collaboration across 20+ hardware engineering teams.",
+          "Took the prototypes to a production application on Angular and Google's internal toolchain."
+        ]
+      }
     },
     {
       id: "exp-5",
@@ -331,7 +424,15 @@ export const portfolioData: PortfolioData = {
         "Architected and implemented micro-frontend component build system with structured CI/CD pipeline",
         "Successfully migrated complex legacy monolithic architecture to scalable, maintainable modern platform"
       ],
-      technologies: ["Vue.js", "Node.js", "TailwindCSS", "SASS", "Jest"]
+      technologies: ["Vue.js", "Node.js", "TailwindCSS", "SASS", "Jest"],
+      site: {
+        heading: "Component library and micro-frontend migration",
+        summary: "Architected a context-agnostic component library for Pottery Barn, West Elm, and Mark and Graham. Components adapt to each brand's design language through CSS variables while behaving the same everywhere.",
+        points: [
+          "Led the move from a monolithic e-commerce platform to a micro-frontend ecosystem.",
+          "Made orientation, initial state and interaction patterns configurable while preserving accessibility and performance standards."
+        ]
+      }
     },
     {
       id: "exp-6",
@@ -351,7 +452,15 @@ export const portfolioData: PortfolioData = {
         "Optimized REST services and Node.js applications on Google Cloud Platform, applying clustering for throughput and resilience",
         "Mentored development teams on advanced frontend and backend development practices"
       ],
-      technologies: ["React", "Redux", "GraphQL", "Node.js", "Java", "Webpack", "SASS"]
+      technologies: ["React", "Redux", "GraphQL", "Node.js", "Java", "Webpack", "SASS"],
+      site: {
+        heading: "Macys.com micro-frontend architecture",
+        summary: "Co-architected the Macys.com micro-frontend architecture with another engineer, letting teams build components in their framework of choice and release on their own schedules.",
+        points: [
+          "Built the tooling that drove voluntary adoption across about 8 teams.",
+          "Led the performance work that cut product discovery page load from 27 seconds to 7."
+        ]
+      }
     },
     {
       id: "exp-8",
