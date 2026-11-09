@@ -1,14 +1,19 @@
-import { Inter } from 'next/font/google';
+import { Bricolage_Grotesque, IBM_Plex_Sans } from 'next/font/google';
 
-// The only font the site uses. It used to be swappable via a font picker;
-// that picker had no remaining UI, so this is now applied statically in
-// layout.tsx instead.
-export const defaultFont = Inter({
+// Both families are downloaded at build time and self-hosted by next/font,
+// so the CSP's `font-src 'self'` holds and the browser never calls Google.
+
+// Body text.
+export const bodyFont = IBM_Plex_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600'],
+  variable: '--font-plex',
+  display: 'swap',
 });
 
-// Note: the .font-jetbrains class (header/footer bookend tags) intentionally
-// has no loaded webfont. It resolves to the system monospace stack via its
-// CSS fallback — a ~40 KB woff2 on the render path was not worth two 20px
-// logo elements. See src/app/globals.css.
+// Headlines, company names and the figures in the readout panel.
+export const displayFont = Bricolage_Grotesque({
+  subsets: ['latin'],
+  variable: '--font-bricolage',
+  display: 'swap',
+});

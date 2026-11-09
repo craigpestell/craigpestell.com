@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
-/* Nord is the site's only theme (light + dark variants, selected via the
-   .dark class); the multi-theme picker that once let visitors switch
-   between it and a dozen others has been removed. */
-@import "./themes/nord.css";
+/* Readout is the site's only theme (light + dark variants, selected via the
+   .dark class). */
+@import "./themes/readout.css";
 
 @theme inline {
   /* Semantic colors */
@@ -32,12 +31,16 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
-  
-  /* Override common Tailwind colors to use our theme */
+  --color-panel-muted: var(--panel-muted);
+  --color-panel-track: var(--panel-track);
+  --color-available: var(--available);
+
+  /* The dashboard page still uses stock Tailwind colour names; point them at
+     the theme so it follows light and dark mode. */
   --color-white: var(--background);
   --color-black: var(--foreground);
   --color-gray-50: var(--muted);
-  --color-gray-100: var(--secondary);
+  --color-gray-100: var(--muted);
   --color-gray-200: var(--border);
   --color-gray-300: var(--border);
   --color-gray-400: var(--muted-foreground);
@@ -46,65 +49,33 @@
   --color-gray-700: var(--foreground);
   --color-gray-800: var(--card);
   --color-gray-900: var(--card);
-  --color-blue-50: var(--accent);
-  --color-blue-100: var(--accent);
-  --color-blue-400: var(--accent);
-  --color-blue-500: var(--primary);
-  --color-blue-600: var(--primary);
-  --color-blue-700: var(--primary);
-  --color-blue-800: var(--primary);
-  --color-indigo-100: var(--muted);
-  
-  /* Font families - fallback to system fonts when variables not loaded */
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-inter: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
-  --font-jetbrains: var(--font-jetbrains, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace);
+
+  /* Two-column layouts collapse below 860px. */
+  --breakpoint-md: 860px;
+
+  --font-sans: var(--font-plex), "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-bricolage), "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Font family classes - with fallbacks for on-demand loading */
-.font-inter {
-  font-family: var(--font-inter, ui-sans-serif, system-ui, sans-serif);
-}
-
-.font-jetbrains {
-  font-family: var(--font-jetbrains, ui-monospace, Menlo, Monaco, 'Cascadia Code', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace);
+html {
+  background: var(--background);
+  color: var(--foreground);
+  /* Anchor links land below the sticky header. */
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
-/*
- * Header content-fade: a soft strip below the fixed header that page content
- * scrolls behind. The alpha stops follow an exponential (roughly logarithmic)
- * falloff rather than a linear ramp, so the fade reads as a curved penumbra
- * instead of a flat band. The peak (90%) matches the header's own background
- * opacity so the top of the strip blends seamlessly into the header.
- */
-.header-fade::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 1.5rem;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  background-image: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--background) 90%, transparent) 0%,
-    color-mix(in srgb, var(--background) 69%, transparent) 10%,
-    color-mix(in srgb, var(--background) 52%, transparent) 21%,
-    color-mix(in srgb, var(--background) 38%, transparent) 33%,
-    color-mix(in srgb, var(--background) 27%, transparent) 46%,
-    color-mix(in srgb, var(--background) 17%, transparent) 60%,
-    color-mix(in srgb, var(--background) 9%, transparent) 74%,
-    color-mix(in srgb, var(--background) 4%, transparent) 87%,
-    transparent 100%
-  );
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 button:not(:disabled),
@@ -117,68 +88,80 @@ button:disabled,
   cursor: not-allowed;
 }
 
-/* Apply theme colors to common elements */
-html {
-  background: var(--background);
-  color: var(--foreground);
+/* Page gutter and measure shared by every section. */
+.shell {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 20px;
 }
 
-/* Override specific Tailwind utilities to use theme variables */
-.bg-white {
-  background-color: var(--background) !important;
+/* Buttons: amber for the one primary action, outlined for the rest. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.dark .bg-white {
-  background-color: var(--background) !important;
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
 }
 
-.text-gray-900 {
-  color: var(--foreground) !important;
+.btn-quiet {
+  border-color: currentColor;
 }
 
-.dark .text-white {
-  color: var(--foreground) !important;
+/* Body-copy links. Navigation and buttons set their own colours. */
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.bg-gray-900 {
-  background-color: var(--card) !important;
+/* Outcome lists: a short dash instead of a bullet. */
+.points > li {
+  position: relative;
+  padding-left: 20px;
 }
 
-.dark .bg-gray-900 {
-  background-color: var(--card) !important;
+.points > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 9px;
+  height: 2px;
+  background: var(--muted-foreground);
 }
 
-/* Fix line-height for text-5xl to prevent descender cutoff */
-.text-5xl {
-  line-height: 1.2 !important;
-}
+/* Readout bars grow in once on load. This is the page's only animation. */
+@media (prefers-reduced-motion: no-preference) {
+  .bar-fill {
+    transform-origin: left;
+    animation: bar-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
 
-/* Smooth transitions for theme changes */
-*,
-*::before,
-*::after {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
+  .bar-fill-after {
+    animation-delay: 0.35s;
+  }
 
-/* Progressive enhancement: Show content by default for better SEO and no-JS experience */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  @keyframes bar-grow {
+    from {
+      transform: scaleX(0);
+    }
   }
 }
 
-/* JavaScript detection for progressive enhancement */
-/* When JavaScript is available, these classes allow for transparent backgrounds */
-.js-enabled .js-enabled\:bg-transparent {
-  background-color: transparent !important;
-}
-
-.js-enabled .js-enabled\:shadow-none {
-  box-shadow: none !important;
-}
-
-.js-enabled .js-enabled\:border-none {
-  border: none !important;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

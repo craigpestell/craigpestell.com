@@ -1,0 +1,92 @@
+/* Readout: the site's only theme. A cool paper background, ink text, one
+   amber signal colour, and a dark instrument panel that carries the
+   measured results. Light and dark variants; dark is selected by the .dark
+   class that ThemeProvider toggles on <html>.
+
+   Every background / foreground pair below is checked by
+   scripts/check-all-themes-contrast.js. */
+
+html[data-theme="readout"] {
+  --background: #F2F4F1;
+  --foreground: #15212B;
+
+  /* Signal amber: primary buttons, focus ring, the "after" bars. */
+  --primary: #F0B323;
+  --primary-foreground: #15212B;
+
+  /* Ink panel: the hero readout and the contact band. */
+  --secondary: #15212B;
+  --secondary-foreground: #EEF2EE;
+
+  /* Links. */
+  --accent: #0A5E6E;
+  --accent-foreground: #FFFFFF;
+
+  --muted: #E6EAE6;
+  --muted-foreground: #52606B;
+
+  --border: #D0D7D2;
+  --input: #D0D7D2;
+  --ring: #F0B323;
+
+  --card: #FFFFFF;
+  --card-foreground: #15212B;
+  --popover: #FFFFFF;
+  --popover-foreground: #15212B;
+
+  --destructive: #B3261E;
+  --destructive-foreground: #FFFFFF;
+  --success: #187A4C;
+  --success-foreground: #FFFFFF;
+  --warning: #F0B323;
+  --warning-foreground: #15212B;
+  --info: #0A5E6E;
+  --info-foreground: #FFFFFF;
+
+  /* Panel internals (text and bar track on --secondary). */
+  --panel-muted: #A9B6BF;
+  --panel-track: #33424F;
+  --available: #1E8E5A;
+}
+
+html[data-theme="readout"].dark,
+html[data-theme="readout"]:is(.dark *) {
+  color-scheme: dark;
+
+  --background: #0F161C;
+  --foreground: #E8ECE8;
+
+  --primary: #F0B323;
+  --primary-foreground: #15212B;
+
+  --secondary: #1A2732;
+  --secondary-foreground: #EEF2EE;
+
+  --accent: #7CCBD8;
+  --accent-foreground: #0F161C;
+
+  --muted: #17212A;
+  --muted-foreground: #9DAAB3;
+
+  --border: #2B3842;
+  --input: #2B3842;
+  --ring: #F0B323;
+
+  --card: #17212A;
+  --card-foreground: #E8ECE8;
+  --popover: #17212A;
+  --popover-foreground: #E8ECE8;
+
+  --destructive: #F2867E;
+  --destructive-foreground: #0F161C;
+  --success: #4CC38A;
+  --success-foreground: #0F161C;
+  --warning: #F0B323;
+  --warning-foreground: #15212B;
+  --info: #7CCBD8;
+  --info-foreground: #0F161C;
+
+  --panel-muted: #A9B6BF;
+  --panel-track: #36485A;
+  --available: #4CC38A;
+}

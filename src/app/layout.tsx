@@ -5,7 +5,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import ClickTracker from '@/components/ClickTracker';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { portfolioData } from '@/data/portfolio';
-import { defaultFont } from '@/lib/fontLoader';
+import { bodyFont, displayFont } from '@/lib/fontLoader';
 import "./globals.css";
 
 const { personalInfo } = portfolioData;
@@ -86,17 +86,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="nord" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            // Add js-enabled class when JavaScript is available
-            document.documentElement.classList.add('js-enabled');
-          `
-        }} />
-      </head>
+    <html lang="en" className="scroll-smooth" data-theme="readout" suppressHydrationWarning>
       <body
-        className={`${defaultFont.className} ${defaultFont.variable} tracking-normal antialiased`}
+        className={`${bodyFont.variable} ${displayFont.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>

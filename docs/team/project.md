@@ -5,7 +5,7 @@ Both roles read this file first. It holds everything specific to craigpestell.co
 ## Product
 
 - **Name:** craigpestell.com, the founder's portfolio site.
-- **What it is:** a single-page portfolio (hero, skills, projects, experience, contact) with a downloadable PDF resume, theme and font controls, and Edge Config driven hero experiments.
+- **What it is:** a single-page portfolio (hero with measured results, work, own product, earlier roles, stack, contact) with a downloadable PDF resume and a light/dark toggle.
 - **Owner:** the founder's own site, unbilled, on the Lite team.
 - **Stage:** live at https://craigpestell.com.
 
