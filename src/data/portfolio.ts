@@ -218,11 +218,12 @@ export const portfolioData: PortfolioData = {
       id: "project-varconv",
       title: "Variation Converter for WooCommerce",
       description: "Open-source WordPress plugin that merges near-duplicate simple products into variable products, with preview and one-click undo",
-      longDescription: "Many WooCommerce stores list one simple product per color or size. Variation Converter scans the catalog, groups the products that are really variants of one product by SKU family and shared name, and turns each group the owner approves into a single variable product. It also splits a variable product back into simple products. The originals are hidden, never deleted, and every change can be undone from the History tab.",
+      longDescription: "Many WooCommerce stores list every color or size as a separate product. Variation Converter finds those and merges each set into one product with options. Nothing is deleted, and every change can be undone.",
       highlights: [
         "Groups candidates automatically by SKU family and shared name prefix, and flags price, category or label mismatches for review",
         "Carries over each variant's SKU, prices, sale dates, stock, weight, dimensions and image",
         "All-or-nothing saves: a failed conversion removes its partial product and leaves the catalog untouched",
+        "Splits a variable product back into simple products",
         "Published on wordpress.org"
       ],
       technologies: ["PHP", "WordPress", "WooCommerce", "JavaScript", "WP-CLI"],
