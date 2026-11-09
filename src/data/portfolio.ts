@@ -75,7 +75,6 @@ export interface SiteCopy {
   lede: string;
   measures: Measure[];
   adoption: { figure: string; text: string };
-  measuresNote: string;
   workIntro: string;
   productId: string;
   productIntro: string;
@@ -136,7 +135,7 @@ export const portfolioData: PortfolioData = {
         label: "Pipeline setup time",
         context: "Apple, hardware test data platform",
         before: { value: "up to 1 hour", amount: 3600 },
-        after: { value: "about 30 seconds", note: "for simple cases", amount: 30 }
+        after: { value: "about 30 seconds", amount: 30 }
       },
       {
         label: "Product discovery page load",
@@ -149,7 +148,6 @@ export const portfolioData: PortfolioData = {
       figure: "60+",
       text: "production users at Apple, reached with no top-down rollout."
     },
-    measuresNote: "Bars are drawn to scale within each pair.",
     workIntro: "Five roles since 2015, most recent first. Each one says what I owned and what changed because of it.",
     productId: "project-varconv",
     productIntro: "Something I designed, built and published on my own.",

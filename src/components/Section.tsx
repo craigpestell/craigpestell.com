@@ -17,7 +17,7 @@ export default function Section({
     <section id={id} aria-labelledby={`${id}-title`} className="border-t border-border">
       <div className="shell py-11 md:py-16">
         <div className="grid gap-x-8 gap-y-2 md:grid-cols-[232px_1fr] md:items-baseline">
-          <h2 id={`${id}-title`} className="font-display text-[2rem] font-extrabold leading-tight tracking-[-0.02em]">
+          <h2 id={`${id}-title`} className="font-display text-4xl font-extrabold leading-tight tracking-[-0.02em]">
             {title}
           </h2>
           <p className="max-w-[40em] text-muted-foreground">{intro}</p>

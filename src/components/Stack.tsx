@@ -18,13 +18,13 @@ export default function Stack({ skills, education }: { skills: Skill[]; educatio
         if (names.length === 0) return null;
         return (
           <div key={category} className={row}>
-            <dt className="text-[15.5px] text-muted-foreground">{label}</dt>
+            <dt className="text-[17px] text-muted-foreground">{label}</dt>
             <dd className="max-w-[44em]">{names.join(', ')}</dd>
           </div>
         );
       })}
       <div className={row}>
-        <dt className="text-[15.5px] text-muted-foreground">Education</dt>
+        <dt className="text-[17px] text-muted-foreground">Education</dt>
         <dd className="flex max-w-[44em] flex-col gap-1">
           {education.map((entry) => (
             <span key={entry.id}>

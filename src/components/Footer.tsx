@@ -36,7 +36,7 @@ export default function Footer({ personalInfo, site }: { personalInfo: PersonalI
           </p>
         </div>
       </section>
-      <footer className="shell flex flex-wrap justify-between gap-x-6 gap-y-1 py-5 text-sm text-muted-foreground">
+      <footer className="shell flex flex-wrap justify-between gap-x-6 gap-y-1 py-5 text-base text-muted-foreground">
         <span>
           © {new Date().getFullYear()} {personalInfo.name}
         </span>
