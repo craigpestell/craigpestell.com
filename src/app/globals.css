@@ -15,6 +15,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
+  --color-tint: var(--tint);
+  --color-tint-foreground: var(--tint-foreground);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -139,7 +141,7 @@ button:disabled,
   top: 0.72em;
   width: 9px;
   height: 2px;
-  background: var(--muted-foreground);
+  background: var(--accent);
 }
 
 /* Readout bars grow in once on load. This is the page's only animation. */

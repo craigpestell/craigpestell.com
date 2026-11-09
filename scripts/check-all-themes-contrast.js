@@ -95,7 +95,12 @@ const colorPairs = [
   ['destructive', 'destructive-foreground'],
   ['success', 'success-foreground'],
   ['warning', 'warning-foreground'],
-  ['info', 'info-foreground']
+  ['info', 'info-foreground'],
+  ['tint', 'tint-foreground'],
+  ['tint', 'muted-foreground'],
+  ['tint', 'accent'],
+  ['background', 'accent'],
+  ['background', 'muted-foreground']
 ];
 
 // Analyze a single theme
