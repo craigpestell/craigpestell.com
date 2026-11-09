@@ -27,7 +27,7 @@ export default function Home() {
           <Work roles={experience.filter((role) => role.site)} />
         </Section>
         {product && (
-          <Section id="product" title="Product" intro={site.productIntro}>
+          <Section id="product" title="Product" intro={site.productIntro} tinted>
             <Product project={product} />
           </Section>
         )}

@@ -23,6 +23,10 @@ html[data-theme="readout"] {
   --accent-foreground: #FFFFFF;
 
   --muted: #E6EAE6;
+
+  /* Teal wash: the band behind the Product section. */
+  --tint: #DDEBEA;
+  --tint-foreground: #15212B;
   --muted-foreground: #52606B;
 
   --border: #D0D7D2;
@@ -66,6 +70,9 @@ html[data-theme="readout"]:is(.dark *) {
   --accent-foreground: #0F161C;
 
   --muted: #17212A;
+
+  --tint: #12262C;
+  --tint-foreground: #E8ECE8;
   --muted-foreground: #9DAAB3;
 
   --border: #2B3842;

@@ -14,7 +14,7 @@ export default function Earlier({ roles }: { roles: Experience[] }) {
           key={role.id}
           className="grid gap-x-8 gap-y-1 border-t border-border py-3 text-[17px] md:grid-cols-[232px_minmax(0,15em)_1fr]"
         >
-          <span className="tabular-nums text-muted-foreground">{years(role)}</span>
+          <span className="tabular-nums font-medium text-accent">{years(role)}</span>
           <span className="font-semibold">
             {role.company}
             <span className="block text-base font-normal text-muted-foreground">{role.position}</span>
