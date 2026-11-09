@@ -15,12 +15,12 @@ export default function Header() {
   return (
     <header className="top-0 z-40 border-b border-border bg-background md:sticky">
       <div className="shell flex flex-wrap items-center gap-x-7 gap-y-3 py-3">
-        <a href="#top" className="font-display text-xl font-extrabold tracking-tight">
+        <a href="#top" className="font-display text-[22px] font-extrabold tracking-tight">
           {personalInfo.name}
         </a>
         <nav
           aria-label="Sections"
-          className="order-3 flex w-full flex-wrap gap-x-[22px] gap-y-1 text-[15px] md:order-none md:w-auto"
+          className="order-3 flex w-full flex-wrap gap-x-[22px] gap-y-1 text-base md:order-none md:w-auto"
         >
           {sections.map((section) => (
             <a
