@@ -2,6 +2,7 @@
 
 One line per merged change, newest first: date, what changed, PR.
 
+- 2026-11-10 · Product intro reworded to "A WordPress plugin I designed, built and published." · #23
 - 2026-11-10 · Stack intro reworded to "What I build with, from the browser to the cluster." · #22
 - 2026-11-09 · Product paragraph shortened to three plain sentences; splitting a variable product moved to a bullet · #21
 - 2026-11-09 · A little more colour: teal role titles, years and list dashes; Product section on a pale teal band · #20

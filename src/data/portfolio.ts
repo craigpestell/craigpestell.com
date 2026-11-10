@@ -150,7 +150,7 @@ export const portfolioData: PortfolioData = {
     },
     workIntro: "Five roles since 2015, most recent first. Each one says what I owned and what changed because of it.",
     productId: "project-varconv",
-    productIntro: "Something I designed, built and published on my own.",
+    productIntro: "A WordPress plugin I designed, built and published.",
     earlierIntro: "Contract and consulting work going back to 1998.",
     stackIntro: "What I build with, from the browser to the cluster.",
     contactHeading: "Building something people need to rely on?",
