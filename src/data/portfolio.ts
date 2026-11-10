@@ -152,7 +152,7 @@ export const portfolioData: PortfolioData = {
     productId: "project-varconv",
     productIntro: "Something I designed, built and published on my own.",
     earlierIntro: "Contract and consulting work going back to 1998.",
-    stackIntro: "What I work in, grouped by where it sits.",
+    stackIntro: "What I build with, from the browser to the cluster.",
     contactHeading: "Building something people need to rely on?",
     contactBody: "That's the work I do best. Send me the details.",
     workingHours: "Working Pacific hours, open to remote."
