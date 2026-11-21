@@ -144,7 +144,19 @@ button:disabled,
   background: var(--accent);
 }
 
-/* Readout bars grow in once on load. This is the page's only animation. */
+/* 404 sign: an amber neon tube on the ink panel. Steady glow by default;
+   with motion allowed it stutters on like a sign being switched on. */
+.neon-sign {
+  --neon: var(--primary);
+  color: var(--neon);
+  text-shadow:
+    0 0 4px color-mix(in srgb, var(--neon) 80%, transparent),
+    0 0 14px color-mix(in srgb, var(--neon) 60%, transparent),
+    0 0 36px color-mix(in srgb, var(--neon) 45%, transparent),
+    0 0 72px color-mix(in srgb, var(--neon) 30%, transparent);
+}
+
+/* Readout bars grow in once on load; the 404 sign flickers on. */
 @media (prefers-reduced-motion: no-preference) {
   .bar-fill {
     transform-origin: left;
@@ -153,6 +165,27 @@ button:disabled,
 
   .bar-fill-after {
     animation-delay: 0.35s;
+  }
+
+  .neon-sign {
+    animation: neon-on 2.4s linear 0.3s both;
+  }
+
+  /* Irregular blinks that settle into a steady glow. Off frames keep a dim,
+     unlit tube so the number never vanishes completely. */
+  @keyframes neon-on {
+    0%, 4%, 10%, 13%, 30%, 33%, 36%, 52%, 55% {
+      color: color-mix(in srgb, var(--neon) 22%, var(--secondary));
+      text-shadow: none;
+    }
+    2%, 7%, 12%, 25%, 34%, 45%, 54%, 62%, 100% {
+      color: var(--neon);
+      text-shadow:
+        0 0 4px color-mix(in srgb, var(--neon) 80%, transparent),
+        0 0 14px color-mix(in srgb, var(--neon) 60%, transparent),
+        0 0 36px color-mix(in srgb, var(--neon) 45%, transparent),
+        0 0 72px color-mix(in srgb, var(--neon) 30%, transparent);
+    }
   }
 
   @keyframes bar-grow {
